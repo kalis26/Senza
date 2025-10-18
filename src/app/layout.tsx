@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import {LibreBaskerville, PlayfairDisplay} from "@/app/fonts";
+import { Karla } from "@/app/fonts";
 
 export const metadata: Metadata = {
   title: "SENZA - Maison de parfums",
@@ -14,9 +14,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`${LibreBaskerville.className} ${PlayfairDisplay.className} antialiased`}
-      >
+      <body className={`${Karla.className} antialiased`}>
         {children}
       </body>
     </html>

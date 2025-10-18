@@ -18,3 +18,13 @@ export const PlayfairDisplay = localFont({
     display: 'swap',
     variable: '--font-playfair-display'
 })
+
+export const Karla = localFont({
+    src: [
+        { path: '../../public/fonts/Karla-Light.woff2', weight: '300'},
+        { path: '../../public/fonts/Karla-Regular.woff2', weight: '400'},
+        { path: '../../public/fonts/Karla-Bold.woff2', weight: '700'},
+    ],
+    display: 'swap',
+    variable: '--font-karla'
+})
