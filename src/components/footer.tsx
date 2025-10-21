@@ -25,13 +25,13 @@ export default function Footer() {
                 <aside className="grid-flow-col items-center">
                     <svg id="Layer_2" xmlns="http://www.w3.org/2000/svg" className="w-12 h-12" fill="#fff" width="495.69" height="329.9" viewBox="0 0 495.69 329.9"><g id="Layer_1-2"><path d="M165.8,164.95c39.07,12.46,72.43,30.27,99.12,53.73v-114.43c-27.14,26.73-59.83,46.21-99.12,60.71Z" /><path d="M330.74,329.9c9.24-26.01,20.94-49.48,34.81-70.15h-64.66c13.58,20.51,23.65,43.86,29.85,70.15Z" /><path d="M495.69,164.95c-42.93-16.89-77.92-38.36-105.05-64.57h-90.86v47.73h90.42v31.42h-90.82v49.72h90.08c29.19-31.83,65.1-53.88,106.23-64.3Z" /><path d="M330.74,0c-10.54,26.83-22.8,50.03-37,70.15h70.61c-15.13-20.95-26.33-44.3-33.61-70.15Z" /><path d="M87.9,148.38h-29.7c-15.38,0-23.07-7.07-23.07-21.21,0-18.56,15.91-27.84,47.73-27.84,21.21,0,41.32,3.54,60.33,10.61v-31.82c-19-6.19-39.11-9.28-60.33-9.28C27.62,68.83,0,88.27,0,127.16c0,35.36,19.4,53.03,58.2,53.03h29.7c17.85,0,26.78,7.07,26.78,21.21,0,19.45-14.54,29.17-43.62,29.17-23.95,0-45.43-3.53-64.44-10.61v31.82c19,6.19,40.48,9.28,64.44,9.28,52.5,0,78.76-19.89,78.76-59.66,0-35.36-20.64-53.03-61.92-53.03Z" /></g></svg>
                     <p>
-                        SENZA Maison de Parfums Co.
+                        SENZA Co.
                         <br />
                         Redéfinir l’élégance à travers le parfum.
                     </p>
                 </aside>
                 <nav className="flex flex-row items-center gap-4 w-full">
-                    <span className="flex-1">Copyright &copy; 2025 SENZA Maison de Parfums Co.</span>
+                    <span className="flex-1">Copyright &copy; 2025 SENZA Co.</span>
                     <div className="grid grid-flow-col gap-4">
                         <a>
                             <svg
