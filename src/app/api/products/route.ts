@@ -12,6 +12,7 @@ export async function POST(req: Request) {
         name: data.name,
         description: data.description,
         price: data.price,
+        categoryID: data.categoryID,
         imageUrl: data.imageUrl,
       },
     });
@@ -26,27 +27,31 @@ export async function GET(req: Request) {
   try {
     const { searchParams } = new URL(req.url);
     const tag = searchParams.get("tag");
-    const minPrice = searchParams.get("minPrice");
-    const maxPrice = searchParams.get("maxPrice");
+
+    let category = searchParams.get("category") ?? undefined;
+    if (!category || category.toLowerCase() === "all") category = undefined;
+
+    const minPriceRaw = searchParams.get("minPrice");
+    const maxPriceRaw = searchParams.get("maxPrice");
 
     const filters: any = {};
 
-    if (minPrice || maxPrice) {
+    if (minPriceRaw || maxPriceRaw) {
+      const min = minPriceRaw ? parseFloat(minPriceRaw) : undefined;
+      const max = maxPriceRaw ? parseFloat(maxPriceRaw) : undefined;
       filters.price = {};
-      if (minPrice) filters.price.gte = parseFloat(minPrice);
-      if (maxPrice) filters.price.lte = parseFloat(maxPrice);
+      if (min !== undefined && !Number.isNaN(min)) filters.price.gte = min;
+      if (max !== undefined && !Number.isNaN(max)) filters.price.lte = max;
     }
 
-    const whereClause = {
-      ...(tag
-        ? { tags: { some: { name: { equals: tag, mode: "insensitive" } } } }
-        : {}),
-      ...filters,
-    };
+    const whereClause: any = { ...filters };
+    if (tag) whereClause.tags = { some: { slug: { equals: tag, mode: "insensitive" } } };
+    if (category) whereClause.category = { slug: { equals: category, mode: "insensitive" } };
 
     const products = await prisma.product.findMany({
       where: whereClause,
-      include: { tags: true },
+      include: { tags: true, category: true },
+      orderBy: { id: "desc" },
     });
 
     return NextResponse.json(products);

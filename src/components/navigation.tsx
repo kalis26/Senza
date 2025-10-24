@@ -35,7 +35,7 @@ export default function Navigation() {
                     <Link href={"/"} className="text-white text-md px-4">ACCUEIL</Link>
                 </div>
                 <div className="bg-[#0B0B0B] hover:bg-[#303030] h-full flex items-center transition-all duration-300">
-                    <Link href={"/"} className="text-white text-md px-4">PARFUMS</Link>
+                    <Link href={"/all"} className="text-white text-md px-4">PARFUMS</Link>
                 </div>
                 <div className="bg-[#0B0B0B] hover:bg-[#303030] h-full flex items-center transition-all duration-300">
                     <Link href={"/collections"} className="text-white text-md px-4">COLLECTIONS</Link>

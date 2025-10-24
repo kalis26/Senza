@@ -1,37 +1,31 @@
-import { prisma } from '@/lib/db';
-
-export default async function FilteredPage({
+export default async function CategoryPage({
     params,
     searchParams,
 }: {
-    params: { category?: string; subcategory?: string } | Promise<{ category?: string; subcategory?: string }>;
+    params: { category?: string } | Promise<{ category?: string }>;
     searchParams: { [key: string]: string | string[] | undefined } | Promise<{ [key: string]: string | string[] | undefined }>;
 }) {
-    const { category, subcategory } = (await params) as { category?: string; subcategory?: string };
-    const sp = (await searchParams) as { [key: string]: string | string[] | undefined };
 
+    const { category } = (await params) as { category?: string };
+    const sp = (await searchParams) as { [key: string]: string | string[] | undefined };
     const minPrice = typeof sp.minPrice === "string" ? sp.minPrice : Array.isArray(sp.minPrice) ? sp.minPrice[0] : undefined;
     const maxPrice = typeof sp.maxPrice === "string" ? sp.maxPrice : Array.isArray(sp.maxPrice) ? sp.maxPrice[0] : undefined;
 
     const query = new URLSearchParams();
     if (category) query.set("category", category);
-    if (subcategory) query.set("tag", subcategory);
     if (minPrice) query.set("minPrice", minPrice);
     if (maxPrice) query.set("maxPrice", maxPrice);
+
+    const sendCategory = category && category !== "all" ? category : undefined;
+    if (sendCategory) query.set("category", sendCategory);
 
     const base = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000';
     const res = await fetch(`${base}/api/products?${query.toString()}`);
     const products = await res.json();
 
-    const categoryRecord = category ? await prisma.category.findUnique({ where: { slug: category } }) : null;
-    const tagRecord = subcategory ? await prisma.tag.findUnique({ where: { slug: subcategory } }) : null;
-
-    const categoryName = categoryRecord?.name ?? (category ? category.toUpperCase() : undefined);
-    const subcategoryName = tagRecord?.name ?? (subcategory ? subcategory.toUpperCase() : undefined);
-
     return (
         <div>
-            <h1>{categoryName} {subcategoryName && `> ${subcategoryName}`}</h1>
+            <h1>{category?.toUpperCase()}</h1>
             <ul>
                 {products.map((p: any) => (
                     <li key={p.id}>{p.name} — ${p.price}</li>

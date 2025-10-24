@@ -8,9 +8,18 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+model Category {
+  id        Int        @id @default(autoincrement())
+  name      String     @unique
+  slug      String     @unique
+  products  Product[]
+}
+
 model Product {
   id          Int      @id @default(autoincrement())
   name        String
+  categoryID  Int
+  category    Category @relation(fields: [categoryID], references: [id])
   description String?
   price       Float
   imageUrl    String?
@@ -19,7 +28,8 @@ model Product {
 
 model Tag {
   id       Int       @id @default(autoincrement())
-  name     String
+  name     String    @unique
+  slug     String    @unique
   products Product[] @relation("ProductTags")
 }
 
