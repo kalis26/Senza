@@ -1,4 +1,6 @@
 import { prisma } from '@/lib/db';
+import ProductCard from '@/components/productcard';
+import type { Product } from '@/components/productcard';
 
 export default async function FilteredPage({
     params,
@@ -30,13 +32,13 @@ export default async function FilteredPage({
     const subcategoryName = tagRecord?.name ?? (subcategory ? subcategory.toUpperCase() : undefined);
 
     return (
-        <div>
-            <h1>{categoryName} {subcategoryName && `> ${subcategoryName}`}</h1>
-            <ul>
-                {products.map((p: any) => (
-                    <li key={p.id}>{p.name} — ${p.price}</li>
+        <div className='p-20'>
+            <h1 className='pb-20'>{categoryName} {subcategoryName && `> ${subcategoryName}`}</h1>
+            <div className="flex flex-wrap gap-20 mt-6 flex-row items-center justify-center">
+                {Array.isArray(products) && products.map((product: Product) => (
+                    <ProductCard key={product.id} product={product} newProduct={(product.tags?.some(t => (t.name ?? "").toLowerCase() === "nouveau")) ?? false} />
                 ))}
-            </ul>
+            </div>
         </div>
     );
 }

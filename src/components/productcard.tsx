@@ -1,9 +1,10 @@
 import Link from "next/link";
 import Image from "next/image";
 
-type Product = {
+export type Product = {
     id: number;
     name: string;
+    slug: string;
     description: string;
     price: number;
     imageUrl: string;
@@ -39,20 +40,33 @@ export default function ProductCard({ product, newProduct }: { product: Product,
     const fragranceLabel = fragranceType ? fragranceMap[fragranceType] : undefined;
 
     return (
-        <div className={`${newProduct ? 'indicator' : ''}`}>
+        <div className={`${newProduct ? 'indicator' : ''} h-full`}>
             {newProduct && (
-                <span className="indicator-item indicator-start badge">NOUVEAU</span>
+                <span className="indicator-item indicator-center badge">NOUVEAU</span>
             )}
-            <div key={product.id} className="flex flex-col gap-2 items-center justify-center">
-                <Link href={`/product/${product.id}`} className="pb-4">
+            <div key={product.id} className="flex flex-col h-full gap-2 items-center justify-between p-4">
+                <Link href={`/produit/${product.slug}`} className="mb-2">
                     <Image src={product.imageUrl} width={300} height={300} alt={product.name} className="h-auto" />
                 </Link>
                 <h2 className="text-lg font-semibold">{product.name}</h2>
-                <p className="text-gray-600">{product.description}</p>
+                <p
+                    className="text-gray-600 mt-2 text-center"
+                    style={{
+                        display: "-webkit-box",
+                        WebkitLineClamp: 3,
+                        WebkitBoxOrient: "vertical",
+                        overflow: "hidden",
+                    }}
+                >
+                    {product.description}
+                </p>
                 {fragranceLabel && (
                     <p className="text-sm text-gray-600 italic">{fragranceLabel}</p>
                 )}
                 <p className="font-bold">{product.price} DA</p>
+                <Link href={`/produit/${product.slug}`} className="mt-2 px-4 py-2 bg-black text-white rounded hover:bg-gray-800 transition-colors duration-200">
+                    ACHETER
+                </Link>
             </div>
         </div>
     );

@@ -18,6 +18,7 @@ model Category {
 model Product {
   id          Int      @id @default(autoincrement())
   name        String
+  slug        String   @unique
   categoryID  Int
   category    Category @relation(fields: [categoryID], references: [id])
   description String?
