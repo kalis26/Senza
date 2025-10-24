@@ -26,7 +26,7 @@ export default async function NewProducts() {
     <div className="p-20">
       <h1 className="text-center w-full text-3xl font-bold pb-6">NOUVEAUTÉS</h1>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-6">
-        {newProducts.map((product: Product) => (
+        {Array.isArray(newProducts) && newProducts.map((product: Product) => (
             <ProductCard key={product.id} product={product} newProduct={true} />
         ))}
       </div>
