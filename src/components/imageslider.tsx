@@ -10,7 +10,7 @@ type Props = {
 };
 
 export default function ImageSlider({
-  images = ["/images/Versace.png", "/images/Versace.png"],
+  images = ["/images/Versace.jpg", "/images/BDC.jpg"],
   intervalMs = 4000,
   className = "",
 }: Props) {
