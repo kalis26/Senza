@@ -1,5 +1,6 @@
 import { prisma } from "@/lib/db";
 import Image from "next/image";
+import ProductNotFound from "./not-found";
 
 export default async function ProductPage({ params }: { params: { slug: string } }) {
     const product = await prisma.product.findUnique({
@@ -7,7 +8,7 @@ export default async function ProductPage({ params }: { params: { slug: string }
         include: { tags: true, category: true },
     });
 
-    if (!product) return <div>Produit introuvable.</div>;
+    if (!product) return ProductNotFound();
 
     return (
         <div className="max-w-5xl mx-auto p-8">

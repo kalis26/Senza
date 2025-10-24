@@ -38,13 +38,10 @@ export default function Navigation() {
                     <Link href={"/all"} className="text-white text-md px-4">PARFUMS</Link>
                 </div>
                 <div className="bg-[#0B0B0B] hover:bg-[#303030] h-full flex items-center transition-all duration-300">
-                    <Link href={"/collections"} className="text-white text-md px-4">COLLECTIONS</Link>
-                </div>
-                <div className="bg-[#0B0B0B] hover:bg-[#303030] h-full flex items-center transition-all duration-300">
                     <Link href={"/marques"} className="text-white text-md px-4">MARQUES</Link>
                 </div>
                 <div className="bg-[#0B0B0B] hover:bg-[#303030] h-full flex items-center transition-all duration-300">
-                    <Link href={"/about"} className="text-white text-md px-4">À PROPOS</Link>
+                    <Link href={"/a-propos"} className="text-white text-md px-4">À PROPOS</Link>
                 </div>
                 <div className="bg-[#0B0B0B] hover:bg-[#303030] h-full flex items-center transition-all duration-300">
                     <Link href={"/contact"} className="text-white text-md px-4">CONTACT</Link>

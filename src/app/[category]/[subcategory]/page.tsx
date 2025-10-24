@@ -1,6 +1,7 @@
 import { prisma } from '@/lib/db';
 import ProductCard from '@/components/productcard';
 import type { Product } from '@/components/productcard';
+import { notFound } from 'next/navigation';
 
 export default async function FilteredPage({
     params,
@@ -10,8 +11,18 @@ export default async function FilteredPage({
     searchParams: { [key: string]: string | string[] | undefined } | Promise<{ [key: string]: string | string[] | undefined }>;
 }) {
     const { category, subcategory } = (await params) as { category?: string; subcategory?: string };
-    const sp = (await searchParams) as { [key: string]: string | string[] | undefined };
+    
+    if (category) {
+        const categoryRecord = await prisma.category.findUnique({ where: { slug: category } });
+        if (!categoryRecord) return notFound();
+    }
 
+    if (subcategory) {
+        const tagRecord = await prisma.tag.findUnique({ where: { slug: subcategory } });
+        if (!tagRecord) return notFound();
+    }
+
+    const sp = (await searchParams) as { [key: string]: string | string[] | undefined };
     const minPrice = typeof sp.minPrice === "string" ? sp.minPrice : Array.isArray(sp.minPrice) ? sp.minPrice[0] : undefined;
     const maxPrice = typeof sp.maxPrice === "string" ? sp.maxPrice : Array.isArray(sp.maxPrice) ? sp.maxPrice[0] : undefined;
 
