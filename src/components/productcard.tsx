@@ -1,5 +1,5 @@
 import Link from "next/link";
-import Image from "next/image";
+import { Image, ImageKitProvider } from "@imagekit/next";
 
 export type Product = {
     id: number;
@@ -46,7 +46,9 @@ export default function ProductCard({ product, newProduct }: { product: Product,
             )}
             <div key={product.id} className="flex flex-col h-full gap-2 items-center justify-between p-4">
                 <Link href={`/produit/${product.slug}`} className="mb-2">
-                    <Image src={product.imageUrl} width={300} height={300} alt={product.name} className="h-auto" />
+                    <ImageKitProvider urlEndpoint="https://ik.imagekit.io/txllyxas2y/">
+                        <Image src={product.imageUrl} width={300} height={300} alt={product.name} className="h-auto" />
+                    </ImageKitProvider>
                 </Link>
                 <h2 className="text-lg font-semibold">{product.name}</h2>
                 <p

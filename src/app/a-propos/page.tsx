@@ -1,4 +1,4 @@
-import Image from "next/image";
+import { Image, ImageKitProvider } from "@imagekit/next";
 import Link from "next/link";
 
 export default function AProposPage() {
@@ -7,7 +7,8 @@ export default function AProposPage() {
             
             <section className="flex flex-col items-center justify-center text-center py-32 px-6">
                 <Image
-                    src="/images/Logo.png"
+                    urlEndpoint="https://ik.imagekit.io/txllyxas2y/"
+                    src="/Logo.png"
                     alt="SENZA – Maison de Parfums"
                     className="mb-4"
                     width={200}
@@ -30,7 +31,8 @@ export default function AProposPage() {
                     </p>
                 </div>
                 <Image
-                    src="/images/senza-bottle.png"
+                    urlEndpoint="https://ik.imagekit.io/txllyxas2y/"
+                    src="/senza-bottle.png"
                     alt="Flacon SENZA"
                     className="rounded shadow-lg object-cover w-full h-[400px]"
                     width={600}
@@ -50,7 +52,8 @@ export default function AProposPage() {
 
             <section className="px-8 md:px-24 py-20 grid md:grid-cols-2 gap-16 items-center">
                 <Image
-                    src="/images/senza-miniatures.png"
+                    urlEndpoint="https://ik.imagekit.io/txllyxas2y/"
+                    src="/senza-miniatures.png"
                     alt="Miniatures SENZA"
                     className="rounded shadow-md object-cover w-full h-[400px]"
                     width={600}
@@ -87,8 +90,11 @@ export default function AProposPage() {
                         personnalité à travers les notes qui vous ressemblent.
                     </p>
                 </div>
-                <img
-                    src="/images/senza-experience.png"
+                <Image
+                    urlEndpoint="https://ik.imagekit.io/txllyxas2y/"
+                    src="/senza-experience.png"
+                    width={600}
+                    height={400}
                     alt="Expérience SENZA"
                     className="rounded shadow-lg object-cover w-full h-[400px]"
                 />
